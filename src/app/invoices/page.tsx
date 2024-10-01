@@ -1,24 +1,30 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Container } from '@chakra-ui/react'
+import { Container, Flex, Button, Heading, Select } from '@chakra-ui/react'
 import {
     Table,
-    Thead,
     Tbody,
-    Tfoot,
     Tr,
-    Th,
     Td,
-    TableCaption,
     TableContainer,
 } from '@chakra-ui/react';
 import { colDefs } from './columnDefintions/defs';
 import { Invoice, coldefObj } from './types';
 
+const filterObject = {
+    Paid: "paid",
+    Pending: "pending",
+    Draft: "draft",
+};
+
+type filterKeys = keyof typeof filterObject;
+type filterValues = typeof filterObject[filterKeys];
 
 const ViewInvoices = () => {
-    const [invoices, setInvoices] = useState([]);
+    const [invoices, setInvoices] = useState<Invoice[]>([]);
+    const [currentFilterStatus, setCurrentFilterStatus] = useState<filterValues>("");
+
     useEffect(() => {
         const fetchInvoices = async () => {
             const result = await fetch('/api/invoices');
@@ -26,7 +32,6 @@ const ViewInvoices = () => {
             setInvoices(invoices);
         }
         fetchInvoices();
-
     }, []);
 
     const getInvoiceColumnValue = (invoice: Invoice, key: keyof coldefObj) => {
@@ -34,13 +39,34 @@ const ViewInvoices = () => {
         return (<Td>{colValue}</Td>);
     }
 
+    const getFilteredInvoices = (invoices: Invoice[]) => {
+        if (["Filter By Status", ""].includes(currentFilterStatus)) {
+            return invoices;
+        }
+        return invoices.filter(inv =>
+            currentFilterStatus && inv.status === currentFilterStatus
+        );
+    }
+
     return (
-        <Container>
-            <div></div>
-            <TableContainer>
+        <Container maxW="90vw">
+            <Flex justify="space-between" marginBottom={'20px'}>
+                <Heading>Invoices</Heading>
+                <Flex align={'center'}>
+                    <div><Select variant='unstyled' value={currentFilterStatus} onChange={(event) => {
+                        setCurrentFilterStatus(event.target.value);
+                    }}>
+                        <option>Filter By Status</option>
+                        {Object.keys(filterObject).map(filterKey => (<option value={filterObject[filterKey as filterKeys]}>{filterKey}</option>))}
+                    </Select>
+                    </div>
+                    <div><Button>New Invoice</Button></div>
+                </Flex>
+            </Flex>
+            <TableContainer maxW="90vw" marginLeft={'auto'} marginRight={'auto'}>
                 <Table variant='striped' colorScheme='teal'>
                     <Tbody>
-                        {invoices.map((invoice, index) => (
+                        {getFilteredInvoices(invoices).map((invoice, index) => (
                             <Tr key={index}>
                                 {Object.keys(colDefs).map(colDefKey => getInvoiceColumnValue(invoice, colDefKey as keyof coldefObj))}
                             </Tr>
@@ -49,10 +75,7 @@ const ViewInvoices = () => {
                 </Table>
             </TableContainer>
         </Container>
-
     )
-
-
 }
 
 export default ViewInvoices;
