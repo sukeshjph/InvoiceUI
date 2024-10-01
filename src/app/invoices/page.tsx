@@ -57,7 +57,7 @@ const ViewInvoices = () => {
                         setCurrentFilterStatus(event.target.value);
                     }}>
                         <option>Filter By Status</option>
-                        {Object.keys(filterObject).map(filterKey => (<option value={filterObject[filterKey as filterKeys]}>{filterKey}</option>))}
+                        {Object.keys(filterObject).map((filterKey, index) => (<option value={filterObject[filterKey as filterKeys]} key={index}>{filterKey}</option>))}
                     </Select>
                     </div>
                     <div><Button>New Invoice</Button></div>
