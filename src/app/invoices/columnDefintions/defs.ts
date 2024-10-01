@@ -1,6 +1,6 @@
 import { coldefObj } from '../types';
 
-export const colDefs: Record<keyof coldefObj, object> = {
+export const colDefs: Record<keyof coldefObj, (val: string) => string> = {
   id: (id: string) => `#${id}`,
   paymentDue: (paymentDue: string) => `Due ${getFormattedDate((paymentDue))}`,
   clientName: (clientName: string) => clientName,

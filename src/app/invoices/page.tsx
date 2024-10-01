@@ -35,7 +35,7 @@ const ViewInvoices = () => {
     }, []);
 
     const getInvoiceColumnValue = (invoice: Invoice, key: keyof coldefObj) => {
-        const colValue = colDefs[key](invoice[key]);
+        const colValue = colDefs[key](invoice[key] as string);
         return (<Td>{colValue}</Td>);
     }
 
