@@ -17,7 +17,7 @@ export const InvoicesList = () => {
     }
 
     const getFilteredInvoices = (invoices: Invoice[]) => {
-        if (["Filter By Status", ""].includes(currentFilterStatus)) {
+        if (["Filter By Status", "all", ""].includes(currentFilterStatus)) {
             return invoices;
         }
         return invoices.filter(inv =>

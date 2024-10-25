@@ -1,5 +1,6 @@
 import React from 'react';
-import { Box, Flex, Image } from '@chakra-ui/react';
+import { Box, Flex, Image, Divider, Center } from '@chakra-ui/react';
+import styles from './styles.module.css';
 
 export default function InvoicesLayout({
     children,
@@ -7,12 +8,23 @@ export default function InvoicesLayout({
     children: React.ReactNode;
 }) {
     return (
-        <Flex height="100vh" width="100vw" flexDirection={'row'}>
-            <Flex flexDirection={'column'} height="100vh" width="103px" bg="#7E88C3">
-                <Box bg="#7C5DFA" />
-                <Image src='/assets/icon-moon.svg' alt='Dan Abramov' />
+        <Flex className={styles.layoutContainer}>
+            <Flex className={styles.navContainer}>
+
+                <Box className={styles.pacmanContainer}>
+                    <Center><div className={styles.pacman}></div></Center>
+                </Box>
+
                 <Box>
-                    <Image src='/assets/image-avatar.jpg' alt='Dan Abramov' />
+                    <Box className={styles.iconMoonContainer}>
+                        <Center>
+                            <Image src='/assets/icon-moon.svg' />
+                        </Center>
+                    </Box>
+                    <Divider orientation='horizontal' />
+                    <Box className={styles.navAvatar}>
+                        <Image className={styles.navAvatarImage} src='/assets/image-avatar.jpg' />
+                    </Box>
                 </Box>
             </Flex>
             <Box flex="1" p="8">
