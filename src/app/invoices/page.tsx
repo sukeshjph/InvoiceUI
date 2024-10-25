@@ -8,6 +8,7 @@ import { InvoicesStateType } from './types';
 import { useFirstRender } from './hooks/useFirstRender';
 
 
+
 export const InvoicesStateContext = createContext<{
     InvoicesState: InvoicesStateType;
     setInvoicesState: React.Dispatch<React.SetStateAction<InvoicesStateType>>
