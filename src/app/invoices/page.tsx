@@ -2,8 +2,8 @@
 
 import { Container } from '@chakra-ui/react';
 import React, { createContext, useState, ReactNode, useEffect } from 'react';
-import { InvoicesList } from './invoicesList';
-import { InvoicesHeader } from './invoicesHeader';
+import { InvoicesList } from './components/invoicesList';
+import { InvoicesHeader } from './components/invoicesHeader';
 import { InvoicesStateType } from './types';
 import { useFirstRender } from './hooks/useFirstRender';
 
