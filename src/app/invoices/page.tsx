@@ -9,11 +9,13 @@ import { useFirstRender } from './hooks/useFirstRender';
 
 
 
+const initialInvoiceState = { invoices: [], currentFilterStatus: '' };
+
 export const InvoicesStateContext = createContext<{
     InvoicesState: InvoicesStateType;
     setInvoicesState: React.Dispatch<React.SetStateAction<InvoicesStateType>>
 }>({
-    InvoicesState: { invoices: [], currentFilterStatus: '' },
+    InvoicesState: initialInvoiceState,
     setInvoicesState: () => { }
 });
 
