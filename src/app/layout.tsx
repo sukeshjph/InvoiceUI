@@ -1,16 +1,13 @@
 import { Providers } from './providers'
 import "./globals.css";
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout(props: { children: React.ReactNode }) {
+  const { children } = props
   return (
-    <html lang="en">
+    <html suppressHydrationWarning>
       <body>
         <Providers>{children}</Providers>
       </body>
     </html>
-  );
+  )
 }

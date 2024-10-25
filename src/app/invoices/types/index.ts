@@ -10,7 +10,7 @@ interface InvoiceItem {
     quantity: number;
     price: number;
     total: number;
-}
+};
 export interface Invoice {
     id: string;
     createdAt: string;
@@ -24,6 +24,13 @@ export interface Invoice {
     clientAddress: Address,
     items: InvoiceItem[],
     total: number;
-}
+};
 
-export type coldefObj = Pick<Invoice, "id" | "paymentDue" | "clientName" | "status" | "total">
+export type coldefObj = Pick<Invoice, "id" | "paymentDue" | "clientName" | "status" | "total">;
+
+export type InvoicesStateType = { invoices: Invoice[], currentFilterStatus: string };
+
+export interface filter {
+    key: string;
+    value: string;
+};
