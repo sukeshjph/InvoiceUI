@@ -3,7 +3,7 @@
 import React, { useContext } from 'react';
 import { Flex, Button, Heading } from '@chakra-ui/react';
 import { Select } from '@chakra-ui/react';
-import { InvoicesStateContext } from '../../page';
+import { InvoicesStateContext } from '../../common/context';
 import { filter } from '../../types';
 
 const filterCollection: filter[] = [

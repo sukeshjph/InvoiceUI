@@ -1,23 +1,12 @@
 'use client';
 
 import { Container } from '@chakra-ui/react';
-import React, { createContext, useState, ReactNode, useEffect } from 'react';
+import React, { useState, ReactNode, useEffect } from 'react';
 import { InvoicesList } from './components/invoicesList';
 import { InvoicesHeader } from './components/invoicesHeader';
 import { InvoicesStateType } from './types';
 import { useFirstRender } from './hooks/useFirstRender';
-
-
-
-const initialInvoiceState = { invoices: [], currentFilterStatus: '' };
-
-export const InvoicesStateContext = createContext<{
-    InvoicesState: InvoicesStateType;
-    setInvoicesState: React.Dispatch<React.SetStateAction<InvoicesStateType>>
-}>({
-    InvoicesState: initialInvoiceState,
-    setInvoicesState: () => { }
-});
+import { InvoicesStateContext } from './common/context';
 
 const ViewInvoices = () => {
     const [InvoicesState, setInvoicesState] = useState<InvoicesStateType>({ invoices: [], currentFilterStatus: '' });
