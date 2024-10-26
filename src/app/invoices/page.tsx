@@ -6,13 +6,13 @@ import { InvoicesList } from './components/invoicesList';
 import { InvoicesHeader } from './components/invoicesHeader';
 import { InvoicesStateType } from './types';
 import { useFirstRender } from './hooks/useFirstRender';
-import { InvoicesStateContext } from './common/context';
+import { InvoicesStateContext } from './context/context';
 
 const ViewInvoices = () => {
     const [InvoicesState, setInvoicesState] = useState<InvoicesStateType>({ invoices: [], currentFilterStatus: '' });
     const isFirstRender = useFirstRender();
 
-    function InvoiceStateProvider({ children }: { children: ReactNode }) {
+    const InvoiceStateProvider = ({ children }: { children: ReactNode }) => {
         return (
             <InvoicesStateContext.Provider value={{ InvoicesState, setInvoicesState }}>
                 {children}

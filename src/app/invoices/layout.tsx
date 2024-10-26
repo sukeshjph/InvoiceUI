@@ -12,7 +12,7 @@ export default function InvoicesLayout({
             <Flex className={styles.navContainer}>
 
                 <Box className={styles.pacmanContainer}>
-                    <Center><div className={styles.pacman}></div></Center>
+                    <Center><Image src='/assets/icon-pacman.png' /></Center>
                 </Box>
 
                 <Box>
@@ -27,7 +27,7 @@ export default function InvoicesLayout({
                     </Box>
                 </Box>
             </Flex>
-            <Box flex="1" p="8">
+            <Box flex="1" p="8" className={styles.contentContainer}>
                 {children}
             </Box>
         </Flex>

@@ -5,7 +5,7 @@ import { Table, TableContainer, Tbody, Tr, Td } from '@chakra-ui/react';
 import { Container } from "@chakra-ui/react";
 import { colDefs } from '../../columnDefintions/defs';
 import { Invoice, coldefObj } from '../../types';
-import { InvoicesStateContext } from '../../common/context';
+import { InvoicesStateContext } from '../../context/context';
 
 
 export const InvoicesList = () => {
