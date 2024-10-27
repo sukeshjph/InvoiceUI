@@ -27,10 +27,10 @@ export const InvoicesList = () => {
 
     return (<Container maxW="90vw" marginLeft={'auto'} marginRight={'auto'}>
         <TableContainer maxW="90vw" marginLeft={'auto'} marginRight={'auto'}>
-            <Table variant='striped' colorScheme='teal'>
+            <Table>
                 <Tbody>
                     {getFilteredInvoices(invoices).map((invoice, index) => (
-                        <Tr key={index}>
+                        <Tr key={index} className='mb-2'>
                             {Object.keys(colDefs).map(colDefKey => getInvoiceColumnValue(invoice, colDefKey as keyof coldefObj))}
                         </Tr>
                     ))}

@@ -1,15 +1,16 @@
 import { coldefObj } from '../types';
 
 export const colDefs: Record<keyof coldefObj, (val: string) => string | JSX.Element> = {
-  id: (id: string) => (<strong>{`#${id}`}</strong>),
+  id: (id: string) => (<span className='font-bold'>{`#${id}`}</span>),
   paymentDue: (paymentDue: string) => `Due ${getFormattedDate((paymentDue))}`,
   clientName: (clientName: string) => clientName,
-  total: (total: string) => (<strong><div><span>&#163;</span>{total}</div></strong>),
-  status: (status: string) => {
-    return (<div style={{ width: '40%', padding: '10px', backgroundColor: `${getStatusColor(status)}` }}>
-      {capitaliseFirstLetter(status)}
-    </div>)
-  },
+  total: (total: string) => (<div className='font-bold'><span>&#163;</span>{total}</div>),
+  status: (status: string) =>
+    <div className={`${getStatusBgClass(status)} w-2/5 p-2 flex items-center`}>
+      <span className={`${getStatusBulletClass(status)} w-3 h-3 mr-2 rounded-2xl`}></span>
+      <span className={getStatusTextClass(status)}>{capitaliseFirstLetter(status)}</span>
+    </div>
+  ,
 }
 
 const getFormattedDate = (dateString: string) => {
@@ -24,14 +25,28 @@ const getFormattedDate = (dateString: string) => {
   return formattedDate;
 }
 
-const capitaliseFirstLetter = (inputStr: string) => {
-  return `${inputStr.slice(0, 1).toUpperCase()}${inputStr.slice(1)}`;
+const capitaliseFirstLetter = (inputStr: string) => `${inputStr.slice(0, 1).toUpperCase()}${inputStr.slice(1)}`;
+
+const getStatusBgClass = (status: string) => {
+  return {
+    paid: 'bg-lime-100',
+    pending: 'bg-amber-100',
+    draft: 'bg-slate-100'
+  }[status];
 }
 
-const getStatusColor = (status: string) => {
+const getStatusTextClass = (status: string) => {
   return {
-    paid: '#33D69F',
-    pending: '#FF8F00',
-    draft: '#979797'
+    paid: 'text-lime-700',
+    pending: 'text-amber-700',
+    draft: 'text-slate-700'
+  }[status];
+}
+
+const getStatusBulletClass = (status: string) => {
+  return {
+    paid: 'bg-lime-700',
+    pending: 'bg-amber-700',
+    draft: 'bg-slate-700'
   }[status];
 }

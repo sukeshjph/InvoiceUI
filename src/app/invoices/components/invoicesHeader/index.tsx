@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useContext } from 'react';
-import { Flex, Button, Heading } from '@chakra-ui/react';
+import { Flex, Heading, Image } from '@chakra-ui/react';
 import { Select } from '@chakra-ui/react';
 import { InvoicesStateContext } from '../../context/context';
 import { filter } from '../../types';
@@ -31,7 +31,7 @@ export const InvoicesHeader = () => {
                     {filterCollection.map((fltr, index) => (<option value={fltr.value} key={index}>{fltr.key}</option>))}
                 </Select>
                 </div>
-                <div><Button>New Invoice</Button></div>
+                <div><button className='cursor-pointer'><Image src='/assets/icon-button-invoice.svg' /></button></div>
             </Flex>
         </Flex>
     )
