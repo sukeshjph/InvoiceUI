@@ -2,13 +2,13 @@ import { coldefObj } from '../types';
 
 export const colDefs: Record<keyof coldefObj, (val: string) => string | JSX.Element> = {
   id: (id: string) => (<span className='font-bold'>{`#${id}`}</span>),
-  paymentDue: (paymentDue: string) => `Due ${getFormattedDate((paymentDue))}`,
-  clientName: (clientName: string) => clientName,
+  paymentDue: (paymentDue: string) => <span className='text-violet-400'>{`Due ${getFormattedDate((paymentDue))}`}</span>,
+  clientName: (clientName: string) => <span className='text-indigo-400'>{clientName}</span>,
   total: (total: string) => (<div className='font-bold'><span>&#163;</span>{total}</div>),
   status: (status: string) =>
     <div className={`${getStatusBgClass(status)} w-2/5 p-2 flex items-center`}>
       <span className={`${getStatusBulletClass(status)} w-3 h-3 mr-2 rounded-2xl`}></span>
-      <span className={getStatusTextClass(status)}>{capitaliseFirstLetter(status)}</span>
+      <span className={`${getStatusTextClass(status)} font-bold`}>{capitaliseFirstLetter(status)}</span>
     </div>
   ,
 }
