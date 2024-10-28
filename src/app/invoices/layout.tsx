@@ -1,6 +1,5 @@
 import React from 'react';
 import { Box, Flex, Image, Divider, Center } from '@chakra-ui/react';
-import styles from './styles.module.css';
 
 export default function InvoicesLayout({
     children,
